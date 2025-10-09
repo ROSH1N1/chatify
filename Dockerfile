@@ -1,21 +1,22 @@
-# Use Node 22.20.0 (or newer)
+# ✅ Use Node 22.20.0 (satisfies Vite requirement)
 FROM node:22.20.0
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy all files
+# Copy everything into the container
 COPY . .
 
-# Install dependencies for backend and frontend
+# Install dependencies
 RUN npm install --prefix backend
 RUN npm install --prefix frontend
 
 # Build the frontend (Vite)
 RUN npm run build --prefix frontend
 
-# Expose port (change if needed)
+# Expose backend port (change if needed)
 EXPOSE 5000
 
-# Start backend server
+# Start the backend
 CMD ["npm", "run", "start", "--prefix", "backend"]
+
