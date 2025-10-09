@@ -1,0 +1,30 @@
+# Set up Node and npm versions
+[phases.setup]
+nodejs_version = "22.20.0"
+npm_version = "10.9.0"
+
+# Install dependencies for both backend and frontend
+[phases.install]
+commands = [
+    "npm install --prefix backend",
+    "npm install --prefix frontend"
+]
+
+# Build frontend (Vite)
+[phases.build]
+commands = [
+    "npm run build --prefix frontend"
+]
+
+# Start backend server
+[phases.start]
+commands = [
+    "npm run start --prefix backend"
+]
+
+# Optional: cache node_modules for faster builds
+[cache]
+paths = [
+    "backend/node_modules",
+    "frontend/node_modules"
+]
