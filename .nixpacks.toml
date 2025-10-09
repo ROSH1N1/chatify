@@ -1,25 +1,42 @@
+# ------------------------------
+# Setup Node and npm versions
+# ------------------------------
 [phases.setup]
 nodejs_version = "22.20.0"
 npm_version = "10.9.0"
 
+# ------------------------------
+# Install dependencies
+# ------------------------------
 [phases.install]
 commands = [
-    "npm install --prefix backend",
-    "npm install --prefix frontend"
+    "echo 'Installing backend dependencies...' && npm install --prefix backend",
+    "echo 'Installing frontend dependencies...' && npm install --prefix frontend"
 ]
 
+# ------------------------------
+# Build frontend (Vite)
+# ------------------------------
 [phases.build]
 commands = [
-    "npm run build --prefix frontend"
+    "echo 'Building frontend...' && npm run build --prefix frontend"
 ]
 
+# ------------------------------
+# Start backend
+# ------------------------------
 [phases.start]
 commands = [
-    "npm run start --prefix backend"
+    "echo 'Starting backend...' && npm run start --prefix backend"
 ]
 
+# ------------------------------
+# Cache node_modules for faster builds
+# ------------------------------
 [cache]
 paths = [
     "backend/node_modules",
-    "frontend/node_modules"
+    "frontend/node_modules",
+    "frontend/node_modules/.vite",   # cache Vite build artifacts
+    "frontend/node_modules/.cache"   # cache Rollup / esbuild cache
 ]
