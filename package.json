@@ -7,7 +7,7 @@
     "node":"=22.12.0"
   },
   "scripts": {
-     "preinstall": "npm install -g n && n 22.20.0 && hash -r",
+    
     "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
    "start":"npm run start --prefix backend"
     
